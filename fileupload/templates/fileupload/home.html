@@ -1,0 +1,25 @@
+<!-- fileupload/templates/home.html -->
+<h1>Welcome!!!</h1>
+{% if user.is_authenticated %}
+<p>Hello, {{ user.get_full_name }}!</p>
+<form action="{% url 'logout' %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Logout</button>
+</form>
+{% if messages %}
+<ul>
+    {% for message in messages %}
+        <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+<br>
+<h2>Upload your .rar file</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Upload</button>
+</form>
+{% else %}
+<p>You are not logged in. Please <a href="{% url 'login' %}">login</a> first.</p>
+{% endif %} 

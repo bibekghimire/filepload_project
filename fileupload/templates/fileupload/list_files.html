@@ -1,0 +1,6 @@
+<h1>Uploaded Files</h1>
+<ul>
+    {% for file in files %}
+        <li>{{ file.file.name }} (Uploaded at: {{ file.uploaded_at }})</li>
+    {% endfor %}
+</ul>
